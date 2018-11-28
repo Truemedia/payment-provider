@@ -1,0 +1,31 @@
+{
+  "name": "payment-provider",
+  "version": "0.1.0",
+  "description": "Abstraction class for handling payments from multiple providers using common methods",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Truemedia/payment-provider.git"
+  },
+  "keywords": [
+    "payment",
+    "provider",
+    "abstraction",
+    "transaction",
+    "party",
+    "buyer",
+    "seller",
+    "broker",
+    "receipt",
+    "sale"
+  ],
+  "author": "Wade Penistone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Truemedia/payment-provider/issues"
+  },
+  "homepage": "https://github.com/Truemedia/payment-provider#readme"
+}
