@@ -5,7 +5,7 @@ class Seller extends Party
   constructor(alias, ledger)
   {
     super(alias, ledger);
-    this.name = 'seller';
+    this.type = 'seller';
   }
 }
 

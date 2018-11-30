@@ -2,6 +2,7 @@ const Accumulator = require('./accumulator');
 const Receipt = require('./receipt');
 const Sale = require('./sale');
 const TransactionLog = require('./transaction_log');
+const LackOfFundsError = require('./../errors/lack_of_funds');
 
 class Transaction
 {
@@ -88,7 +89,7 @@ class Transaction
       if (this.hasFunds(currency, amount, sender)) {
         resolve( this.authorise(currency, amount, sender, recipient) );
       } else {
-        reject('bad transaction');
+        reject(new LackOfFundsError);
       }
     });
   }
