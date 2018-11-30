@@ -2,7 +2,7 @@ const {
   Ledger, Transaction, TransactionLog, // Transaction
   Buyer, Seller, Broker, Parties, // Parties
   Amount, Currency, Price, Product, Service // Exchange
-} = require('./src/index');
+} = require('./../src/index');
 
 /**
   * Currency

@@ -4,6 +4,11 @@ class Amount
   {
     this.value = value;
   }
+
+  static fromString(value)
+  {
+    return new this(value);
+  }
 }
 
 module.exports = Amount;
