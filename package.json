@@ -1,6 +1,6 @@
 {
   "name": "payment-provider",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Abstraction class for handling payments from multiple providers using common methods",
   "main": "src/index.js",
   "scripts": {
