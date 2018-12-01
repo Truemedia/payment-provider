@@ -4,7 +4,7 @@ const {
   Amount, Currency, Price, Product, Service // Exchange
 } = require('./../src/index');
 
-// User with a balannce of 50 tokens buys a product and service with a total cost of 46 tokens
+// User with a balannce of 40 tokens trys to buy a product and service with a total cost of 46 tokens
 
 /**
   * Currency
@@ -25,7 +25,7 @@ let service = new Service({name: 'Test service'}, [
 let balance = new Ledger(currency, [
   TransactionLog.income('UNIQUE_REF', [
     {
-      prices: [{'token': 50}]
+      prices: [{'token': 40}]
     }
   ])
 ]);
@@ -40,12 +40,24 @@ let parties = new Parties(
 /**
   * Transaction (Sealing the deal)
   */
-new Transaction(parties)
+let transaction = new Transaction(parties)
   .addProduct(product)
-  .addService(service)
-  .purchase(currency)
+  .addService(service);
+
+transaction.purchase(currency)
   .then(transaction => {
     console.log(`Buyer (${transaction.parties.buyer.alias}) balance`, transaction.parties.buyer.ledger.funds(currency));
     console.log(`Seller (${transaction.parties.seller.alias}) balance`, transaction.parties.seller.ledger.funds(currency));
   })
-  .catch(err => console.error(err));
+  .catch(err => {
+    switch (err.code) {
+      case 'PAYMENT_LACK_OF_FUNDS':
+        let quote = transaction.quote(currency);
+        let fundsNeeded = transaction.fundsNeeded(currency);
+        console.log(`Cost of offering is ${quote}, buyer needs ${fundsNeeded} more to afford it`);
+      break;
+      default:
+        console.error(msg)
+      break;
+    }
+  });

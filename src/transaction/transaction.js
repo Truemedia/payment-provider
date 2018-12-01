@@ -71,12 +71,21 @@ class Transaction
   }
 
   /**
-    * Check if party has funds
+    * Check if specified party has funds
     * @return {Bool}
     */
   hasFunds(currency, amount, party = 'buyer')
   {
     return this.parties[party].ledger.funds(currency) >= amount;
+  }
+
+  /**
+    * Funds needed for party to add to balance to afford cost of quote
+    * @return {Int}
+    */
+  fundsNeeded(currency, party = 'buyer')
+  {
+    return this.quote(currency) - this.parties[party].ledger.funds(currency);
   }
 
   /**
